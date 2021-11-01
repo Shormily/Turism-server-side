@@ -42,6 +42,13 @@ async function run() {
       const orders = await cursor.toArray();
       res.send(orders);
     });
+    // GET a single order
+    app.get("/orders/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const order = await orderCollection.findOne(query);
+      res.json(order);
+    });
 
     // POST API
     app.post("/services", async (req, res) => {
