@@ -98,6 +98,13 @@ async function run() {
       const result = await orderCollection.deleteOne(query);
       res.json(result);
     });
+
+    // POST API
+    app.post("/services", async (req, res) => {
+      const service = req.body;
+      const result = await servicesCollection.insertOne(service);
+      res.json(result);
+    });
   } finally {
     // await client.close()
   }
